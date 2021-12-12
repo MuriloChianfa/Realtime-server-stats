@@ -20,10 +20,12 @@ RUN apt-get update && \
     libcurl4 \
     openssl \
     procps \
+    unzip \
     wget \
     curl \
-    git \
     htop \
+    zip \
+    git \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Compile PHP with swoole extenstion
@@ -50,5 +52,6 @@ RUN mkdir -p /data/log/ && touch /data/log/swoole-task.log && chmod 777 /data/lo
 WORKDIR /app/
 
 # Run dump-init on startup
-ENTRYPOINT ["php", "server.php"]
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD php server.php
 
