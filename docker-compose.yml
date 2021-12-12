@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  realtime-monitor:
+    build:
+      context: RealtimeMonitor
+      dockerfile: Dockerfile
+    image: murilochianfa/realtime-monitor:latest
+    container_name: realtime-monitor
+    hostname: realtime-monitor
+    ports:
+      - 9501:9501/tcp
+    volumes:
+      - ./RealtimeMonitor:/app
+  
+  realtime-frontend:
+    build:
+      context: Frontend
+      dockerfile: Dockerfile
+    image: murilochianfa/realtime-frontend:latest
+    container_name: realtime-frontend
+    hostname: realtime-frontend
+    ports:
+      - 80:80/tcp
+    volumes:
+      - ./Frontend:/app
+
